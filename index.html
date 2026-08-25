@@ -982,6 +982,12 @@ html&gt;body{padding:0}&lt;/style&gt;
               &lt;li&gt;雨后留意落石、塌方、积水和低能见度；不赶夜路，不因为导航显示更短就进入非铺装捷径。&lt;/li&gt;
               &lt;li&gt;每到县城补油，油量尽量保持在半箱以上；下载离线地图，随车确认备胎、千斤顶、拖车绳和紧急联络方式。&lt;/li&gt;
             &lt;/ul&gt;
+            &lt;h4 class=&quot;rb-subheading&quot;&gt;预约与购票清单&lt;/h4&gt;
+            &lt;ul&gt;
+              &lt;li&gt;必须提前预约：D6喇荣五明佛学院。9月3日开始进入微信小程序“喇荣沟进沟预约”查看并抢约9月6日时段；放票时间和班次可能调整，以小程序当日公告为准。入场携带身份证原件和预约码，私家车不进沟。&lt;/li&gt;
+              &lt;li&gt;建议出发前完成：D2扎尕那。8月30日前通过微信小程序“扎尕那大景区”复核实名购票、分时预约和自驾车管理规则，并保存电子凭证。&lt;/li&gt;
+              &lt;li&gt;建议提前1–2天实名购票：D8莲宝叶则通过微信或支付宝小程序“阿坝旅游”办理；D11坎布拉在9月10日晚通过景区官方公众号或携程、美团实名购票，同时确认景交车、船班和进入口。&lt;/li&gt;
+            &lt;/ul&gt;
           &lt;/div&gt;
           &lt;div class=&quot;rb-overview-wide&quot;&gt;
             &lt;h4&gt;需要特别关注&lt;/h4&gt;
@@ -1055,6 +1061,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   #roadbook-map-2026-v2 .rb-overview-wide { grid-column: 1 / -1; }
   #roadbook-map-2026-v2 .rb-overview h4 { margin: 0 0 0.35rem; font-weight: 500; }
+  #roadbook-map-2026-v2 .rb-overview h4.rb-subheading { margin-top: 0.75rem; }
   #roadbook-map-2026-v2 .rb-overview p { margin: 0; }
   #roadbook-map-2026-v2 .rb-overview ul { margin: 0; padding-inline-start: 1.15rem; }
   #roadbook-map-2026-v2 .rb-overview li + li { margin-top: 0.3rem; }
@@ -1245,16 +1252,16 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   const days = [
     { day: 1, date: &quot;9月1日&quot;, ids: [&quot;lanzhou&quot;, &quot;ganjia&quot;, &quot;bajiao&quot;, &quot;xiahe&quot;], km: &quot;约260–300 km&quot;, drive: &quot;4.5–5.5小时&quot;, stay: &quot;住夏河&quot;, route: &quot;兰州机场 → 甘加秘境 → 夏河&quot;, sights: &quot;甘加秘境、八角城、白石崖外围&quot;, note: &quot;10:00落地，预计11:30取车出发；只走开放区域，不进未开发峡谷。&quot; },
-    { day: 2, date: &quot;9月2日&quot;, ids: [&quot;xiahe&quot;, &quot;sangke&quot;, &quot;zagulu&quot;, &quot;rockroad&quot;, &quot;zhagana&quot;], km: &quot;约230–270 km&quot;, drive: &quot;7–8小时&quot;, stay: &quot;住扎尕那业日村附近&quot;, route: &quot;夏河 → 桑科 → 扎古录 → 洛克之路 → 扎尕那&quot;, sights: &quot;拉卜楞寺、桑科草原、洛克之路、仙女滩日落&quot;, note: &quot;早出发，争取17:30前入园；洛克之路遇雨、塌方预警或临时管制时改走铺装路。&quot;, photos: [&quot;labrang&quot;, &quot;zhagana&quot;] },
+    { day: 2, date: &quot;9月2日&quot;, ids: [&quot;xiahe&quot;, &quot;sangke&quot;, &quot;zagulu&quot;, &quot;rockroad&quot;, &quot;zhagana&quot;], km: &quot;约230–270 km&quot;, drive: &quot;7–8小时&quot;, stay: &quot;住扎尕那业日村附近&quot;, route: &quot;夏河 → 桑科 → 扎古录 → 洛克之路 → 扎尕那&quot;, sights: &quot;拉卜楞寺、桑科草原、洛克之路、仙女滩日落&quot;, note: &quot;早出发，争取17:30前入园；请在8月30日前通过“扎尕那大景区”小程序复核并完成实名购票/分时预约。洛克之路遇雨、塌方预警或临时管制时改走铺装路。&quot;, photos: [&quot;labrang&quot;, &quot;zhagana&quot;] },
     { day: 3, date: &quot;9月3日&quot;, ids: [&quot;zhagana&quot;, &quot;ruoergai&quot;, &quot;ninebend&quot;, &quot;tangke&quot;], km: &quot;约200–230 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住唐克&quot;, route: &quot;扎尕那 → 若尔盖 → 九曲黄河第一湾 → 唐克&quot;, sights: &quot;达日观景台日出、润吾沟、若尔盖草原、九曲黄河&quot;, note: &quot;润吾沟控制2–3小时，约11:30离开；郎木寺仅作为有余量时的机动项。&quot;, photos: [&quot;ninebend&quot;] },
     { day: 4, date: &quot;9月4日&quot;, ids: [&quot;tangke&quot;, &quot;wache&quot;, &quot;hongyuan&quot;, &quot;maerkang&quot;], km: &quot;约330–380 km&quot;, drive: &quot;6–8小时&quot;, stay: &quot;住马尔康&quot;, route: &quot;唐克 → 瓦切 → 红原 → 马尔康&quot;, sights: &quot;瓦切塔林、红原草原、梭磨河谷&quot;, note: &quot;转场日，只安排短停；利用马尔康较低海拔休整，不在雨雾中赶夜路。&quot; },
     { day: 5, date: &quot;9月5日&quot;, ids: [&quot;maerkang&quot;, &quot;wengda&quot;, &quot;seda&quot;], km: &quot;约270–300 km&quot;, drive: &quot;6–8小时&quot;, stay: &quot;住色达县城&quot;, route: &quot;马尔康 → 翁达 → 色达&quot;, sights: &quot;翁达高原河谷、沿途草原&quot;, note: &quot;G548色达—翁达段仍在改建，至少留2小时施工机动；下午不再硬塞景点。&quot; },
-    { day: 6, date: &quot;9月6日&quot;, ids: [&quot;seda&quot;, &quot;larung&quot;, &quot;rangtang&quot;], km: &quot;约190–230 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住壤塘&quot;, route: &quot;色达 → 五明佛学院 → 壤塘&quot;, sights: &quot;喇荣五明佛学院、色达高原风光&quot;, note: &quot;按预约时段乘官方交通进入；午后只转场至壤塘休整，不追加景点、不连夜赶往阿坝县。未预约成功则可提前到壤塘休整。&quot;, photos: [&quot;larung&quot;] },
+    { day: 6, date: &quot;9月6日&quot;, ids: [&quot;seda&quot;, &quot;larung&quot;, &quot;rangtang&quot;], km: &quot;约190–230 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住壤塘&quot;, route: &quot;色达 → 五明佛学院 → 壤塘&quot;, sights: &quot;喇荣五明佛学院、色达高原风光&quot;, note: &quot;本景点必须提前预约：9月3日起在微信小程序“喇荣沟进沟预约”查看并抢约9月6日时段，放票时间以小程序公告为准。按预约时段乘官方交通进入；未约成则直接去壤塘休整。&quot;, photos: [&quot;larung&quot;] },
     { day: 7, date: &quot;9月7日&quot;, ids: [&quot;rangtang&quot;, &quot;bangtuo&quot;, &quot;aba&quot;], km: &quot;约150–190 km&quot;, drive: &quot;3–4小时&quot;, stay: &quot;住阿坝县&quot;, route: &quot;壤塘 → 棒托寺（可选） → 阿坝县&quot;, sights: &quot;棒托寺石刻大藏经（可选）、沿途高原河谷&quot;, note: &quot;本日以休整和为莲宝叶则留体力为主；棒托寺最多停留60–90分钟，雨天直接略过。若16:00前抵达且体力充足再考虑各莫寺，否则在阿坝县补给、加油；不按导航改走S453青海界捷径。&quot; },
-    { day: 8, date: &quot;9月8日&quot;, ids: [&quot;aba&quot;, &quot;lianbao&quot;, &quot;jiuzhi&quot;], km: &quot;约180–220 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住久治&quot;, route: &quot;阿坝 → 莲宝叶则 → 久治&quot;, sights: &quot;莲宝叶则、扎尕尔措&quot;, note: &quot;7:30左右从阿坝县出发，给景区完整预留4–5小时，14:00–15:00前离开并在天黑前抵达久治。大雾、雷雨或临时管控时取消游览、直接去久治。&quot; },
+    { day: 8, date: &quot;9月8日&quot;, ids: [&quot;aba&quot;, &quot;lianbao&quot;, &quot;jiuzhi&quot;], km: &quot;约180–220 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住久治&quot;, route: &quot;阿坝 → 莲宝叶则 → 久治&quot;, sights: &quot;莲宝叶则、扎尕尔措&quot;, note: &quot;建议9月6–7日通过“阿坝旅游”小程序实名购票。7:30左右从阿坝县出发，给景区完整预留4–5小时，14:00–15:00前离开并在天黑前抵达久治。大雾、雷雨或临时管控时直接去久治。&quot; },
     { day: 9, date: &quot;9月9日&quot;, ids: [&quot;jiuzhi&quot;, &quot;dari&quot;, &quot;maqin&quot;], km: &quot;约350–400 km&quot;, drive: &quot;7–8小时&quot;, stay: &quot;住玛沁&quot;, route: &quot;久治 → 达日 → 玛沁&quot;, sights: &quot;黄河源区、达日草原、阿尼玛卿远景&quot;, note: &quot;全程长距离转场，不进入年保玉则等关闭保护区；每到县城补油。&quot; },
     { day: 10, date: &quot;9月10日&quot;, ids: [&quot;maqin&quot;, &quot;lajia&quot;, &quot;guide&quot;], km: &quot;约310–360 km&quot;, drive: &quot;6–7小时&quot;, stay: &quot;住贵德&quot;, route: &quot;玛沁 → 拉加河谷 → 贵德&quot;, sights: &quot;拉加黄河谷地、贵德黄河日落&quot;, note: &quot;上午尽早出发；傍晚轻松游贵德河滨，检查车辆并加满油。&quot;, routeClass: &quot;rb-return&quot; },
-    { day: 11, date: &quot;9月11日&quot;, ids: [&quot;guide&quot;, &quot;kanbula&quot;, &quot;xining&quot;], km: &quot;约220–260 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住西宁，次日飞北京&quot;, route: &quot;贵德 → 坎布拉 → 西宁机场&quot;, sights: &quot;贵德黄河、坎布拉丹霞与峡谷水库&quot;, note: &quot;从贵德方向进入，景区约4小时；北岸码头道路不驶入，建议9月12日再乘机。&quot;, routeClass: &quot;rb-last&quot;, photos: [&quot;kanbula&quot;] }
+    { day: 11, date: &quot;9月11日&quot;, ids: [&quot;guide&quot;, &quot;kanbula&quot;, &quot;xining&quot;], km: &quot;约220–260 km&quot;, drive: &quot;4–5小时&quot;, stay: &quot;住西宁，次日飞北京&quot;, route: &quot;贵德 → 坎布拉 → 西宁机场&quot;, sights: &quot;贵德黄河、坎布拉丹霞与峡谷水库&quot;, note: &quot;9月10日晚通过景区官方公众号或OTA实名购票，确认景交车、船班和当日进入口。从贵德方向进入，景区约4小时；北岸码头道路不驶入，建议9月12日再乘机。&quot;, routeClass: &quot;rb-last&quot;, photos: [&quot;kanbula&quot;] }
   ];
 
   const regionCodes = new Set([&quot;51&quot;, &quot;62&quot;, &quot;63&quot;]);
