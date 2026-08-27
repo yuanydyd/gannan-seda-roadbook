@@ -25,7 +25,7 @@
   <div class="rb-map-wrap">
     <svg role="img" aria-labelledby="rb-map-title rb-map-desc">
       <title id="rb-map-title">兰州至西宁十一日自驾路线地图</title>
-      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图明确标出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线。</desc>
+      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图明确标出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线，莲宝叶则经年保玉则至久治以红色点划线标为风险参考线。</desc>
     </svg>
     <div class="rb-loading text-small text-muted" aria-live="polite">正在绘制地图…</div>
   </div>
@@ -35,6 +35,7 @@
     <span><span class="rb-key-diamond">◆</span>主要景点</span>
     <span><span class="rb-key-square"></span>途经节点</span>
     <span><span class="rb-key-alt"></span>备选支线</span>
+    <span><span class="rb-key-reference"></span>风险参考线（不执行）</span>
     <span class="text-muted">景点级示意，实际道路以导航和临时管制为准 · 底图 cn-atlas · 坐标 OSM/Nominatim</span>
   </div>
 
@@ -103,6 +104,12 @@
             </ul>
           </div>
           <div class="rb-overview-wide">
+            <h4>D5风险参考路线</h4>
+            <ul>
+              <li>莲宝叶则→年保玉则（网络攻略也常写作“年宝玉则”）→久治，仅以红色点划线表示攻略的大致穿越方向；不计入主线里程和驾驶时间，不提供轨迹或入口导航，也不作为现场行驶建议。</li>
+            </ul>
+          </div>
+          <div class="rb-overview-wide">
             <h4>D8–D9备选方案</h4>
             <ul>
               <li>主线（推荐）：D8达日→甘德→玛沁，D9在玛沁安排永宝山、格萨尔文化与非遗体验，保留休整和天气机动。</li>
@@ -116,7 +123,7 @@
               <li>D2出发前核实洛克之路的降雨、施工和管制；D5复核莲宝叶则开放和久治方向路况，14:00–15:00前离园。</li>
               <li>D6–D8每到久治、班玛、达日和甘德及时补油；D6–D7目前有连续降雨信号，山区导航时间通常偏乐观，不走无编号近路，不在雨雾中赶夜路。</li>
               <li>年保玉则、阿尼玛卿雪山、冬格措那湖湿地公园及三江源黄河园区均按未开放核心区域处理，不采纳网络穿越攻略。参考<a href="https://www.sohu.com/a/1017866348_121106869" target="_blank" rel="noopener noreferrer">果洛州文旅部门安全声明</a>。</li>
-              <li>本次参考的<a href="https://www.xiaohongshu.com/explore/6a48d5740000000020039833?xsec_source=app_share&amp;xsec_token=CBz3xk_XczWNayW9a9ztEm5_xvxF-Nz7bOUBgzfoVrNrw=" target="_blank" rel="noopener noreferrer">年宝玉则越野穿越攻略</a>属于约4–6小时的非铺装线路，发布者明确表示普通小车不适合；不纳入D5–D6租车主线。</li>
+              <li>本次参考的<a href="https://www.xiaohongshu.com/explore/6a48d5740000000020039833?xsec_source=app_share&amp;xsec_token=CBz3xk_XczWNayW9a9ztEm5_xvxF-Nz7bOUBgzfoVrNrw=" target="_blank" rel="noopener noreferrer">年宝玉则越野穿越攻略</a>属于约4–6小时的非铺装线路，发布者明确表示普通小车不适合；地图仅保留风险参考线，不纳入D5–D6租车主线。</li>
               <li>租车时书面确认跨省、西宁异地还车、救援范围和车损条款；备选线出发前再次确认油量、胎压、备胎和离线地图。</li>
               <li>如出现静息呼吸困难、走路不稳或意识异常，应视为高原急症警讯，立即停止上升、寻求医疗并在安全条件下下撤。参考 <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC高海拔出行指南</a>。</li>
             </ul>
@@ -177,6 +184,13 @@
     width: 1.35rem;
     margin-inline-end: 0.3rem;
     border-top: 2px dashed var(--viz-series-6);
+    vertical-align: middle;
+  }
+  #roadbook-map-2026-v2 .rb-key-reference {
+    display: inline-block;
+    width: 1.35rem;
+    margin-inline-end: 0.3rem;
+    border-top: 3px dotted var(--destructive);
     vertical-align: middle;
   }
   #roadbook-map-2026-v2 .rb-detail { margin-top: 0.4rem; }
@@ -275,6 +289,16 @@
     vector-effect: non-scaling-stroke;
     transition: opacity 160ms ease, stroke-width 160ms ease;
   }
+  #roadbook-map-2026-v2 .rb-reference-route {
+    fill: none;
+    stroke: var(--destructive);
+    stroke-width: 3;
+    stroke-dasharray: 2 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+    transition: opacity 160ms ease, stroke-width 160ms ease;
+  }
   #roadbook-map-2026-v2 .rb-stay,
   #roadbook-map-2026-v2 .rb-via {
     fill: var(--card);
@@ -294,6 +318,13 @@
     fill: var(--background);
     stroke: var(--viz-series-6);
     stroke-width: 2.2;
+    vector-effect: non-scaling-stroke;
+    transition: opacity 160ms ease;
+  }
+  #roadbook-map-2026-v2 .rb-reference-point {
+    fill: var(--background);
+    stroke: var(--destructive);
+    stroke-width: 2.4;
     vector-effect: non-scaling-stroke;
     transition: opacity 160ms ease;
   }
@@ -388,6 +419,7 @@
     maqin:      { name: "玛沁", coord: [100.2368, 34.4793], kind: "stay", days: [8, 9, 10] },
     madoi:      { name: "玛多（备选）", coord: [98.2123, 34.9169], kind: "alternative", days: [8, 9] },
     animaqing:  { name: "阿尼玛卿（备选）", coord: [99.4730, 34.7662], kind: "alternative", days: [9] },
+    nianbaoyuze:{ name: "年保玉则（参考）", coord: [101.1122, 33.2901], kind: "reference", days: [5, 6] },
     lajia:      { name: "拉加黄河谷地", coord: [100.6378, 34.6813], kind: "attraction", days: [10] },
     guide:      { name: "贵德", coord: [101.4481, 35.9866], kind: "stay", days: [10, 11] },
     kanbula:    { name: "坎布拉", coord: [101.8491, 36.1137], kind: "attraction", days: [11] },
@@ -413,6 +445,10 @@
     { name: "阿尼玛卿外围备选（D9往返）", ids: ["maqin", "animaqing"], days: [9] }
   ];
 
+  const referenceRoutes = [
+    { name: "年保玉则越野穿越（仅作风险参考，不执行）", ids: ["lianbao", "nianbaoyuze", "jiuzhi"], days: [5, 6] }
+  ];
+
   const regionCodes = new Set(["51", "62", "63"]);
   const regionProvinces = {
     type: "FeatureCollection",
@@ -434,7 +470,7 @@
     wache: [8, -8, "start"], aba: [8, 15, "start"], lianbao: [-8, 15, "end"],
     jiuzhi: [8, -9, "start"], banma: [8, 15, "start"], dari: [-8, 15, "end"],
     gande: [8, 15, "start"], maqin: [8, -9, "start"], madoi: [8, -9, "start"],
-    animaqing: [-8, 15, "end"], lajia: [8, 15, "start"], guide: [-8, -9, "end"],
+    animaqing: [-8, 15, "end"], nianbaoyuze: [-8, -10, "end"], lajia: [8, 15, "start"], guide: [-8, -9, "end"],
     kanbula: [8, 15, "start"], xining: [8, -8, "start"]
   };
 
@@ -531,6 +567,15 @@
       route.append("title").text(alternative.name);
     });
 
+    referenceRoutes.forEach(reference => {
+      const geometry = { type: "LineString", coordinates: reference.ids.map(id => points[id].coord) };
+      const dayClass = reference.days.map(day => `rb-day-${day}`).join(" ");
+      const route = routes.append("path")
+        .attr("class", `rb-reference-route rb-day-mark ${dayClass}`)
+        .attr("d", geoPath(geometry));
+      route.append("title").text(reference.name);
+    });
+
     const pointEntries = Object.entries(points).map(([id, value]) => ({ id, ...value }));
     const marks = svg.append("g").attr("class", "rb-layer");
 
@@ -557,6 +602,17 @@
       .attr("d", d3.symbol().type(d3.symbolTriangle).size(64));
     alternativeMarks.append("title").text(point => point.name);
 
+    const referenceMarks = marks.selectAll("path.rb-reference-point")
+      .data(pointEntries.filter(point => point.kind === "reference"))
+      .join("path")
+      .attr("class", point => `rb-reference-point rb-day-mark ${dayClasses(point)}`)
+      .attr("transform", point => {
+        const [x, y] = projection(point.coord);
+        return `translate(${x},${y})`;
+      })
+      .attr("d", d3.symbol().type(d3.symbolCross).size(74));
+    referenceMarks.append("title").text(point => `${point.name} · 风险参考点，不执行`);
+
     const stayMarks = marks.selectAll("circle.rb-stay")
       .data(pointEntries.filter(point => point.kind === "stay"))
       .join("circle")
@@ -579,7 +635,7 @@
     viaMarks.append("title").text(point => point.name);
 
     const compact = width < 520;
-    const overviewLabels = new Set(["lanzhou", "ganjia", "xiahe", "zhagana", "tangke", "aba", "lianbao", "jiuzhi", "banma", "dari", "gande", "maqin", "madoi", "animaqing", "guide", "kanbula", "xining"]);
+    const overviewLabels = new Set(["lanzhou", "ganjia", "xiahe", "zhagana", "tangke", "aba", "lianbao", "nianbaoyuze", "jiuzhi", "banma", "dari", "gande", "maqin", "madoi", "animaqing", "guide", "kanbula", "xining"]);
     const selectedNumber = selectedDay === "all" ? null : Number(selectedDay);
     const labelData = pointEntries.filter(point => {
       if (selectedNumber !== null) return point.days.includes(selectedNumber);
