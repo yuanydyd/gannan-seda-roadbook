@@ -25,7 +25,7 @@
   <div class="rb-map-wrap">
     <svg role="img" aria-labelledby="rb-map-title rb-map-desc">
       <title id="rb-map-title">兰州至西宁十一日自驾路线地图</title>
-      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝、莲宝叶则、久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线。</desc>
+      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图明确标出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线。</desc>
     </svg>
     <div class="rb-loading text-small text-muted" aria-live="polite">正在绘制地图…</div>
   </div>
@@ -116,6 +116,7 @@
               <li>D2出发前核实洛克之路的降雨、施工和管制；D5复核莲宝叶则开放和久治方向路况，14:00–15:00前离园。</li>
               <li>D6–D8每到久治、班玛、达日和甘德及时补油；D6–D7目前有连续降雨信号，山区导航时间通常偏乐观，不走无编号近路，不在雨雾中赶夜路。</li>
               <li>年保玉则、阿尼玛卿雪山、冬格措那湖湿地公园及三江源黄河园区均按未开放核心区域处理，不采纳网络穿越攻略。参考<a href="https://www.sohu.com/a/1017866348_121106869" target="_blank" rel="noopener noreferrer">果洛州文旅部门安全声明</a>。</li>
+              <li>本次参考的<a href="https://www.xiaohongshu.com/explore/6a48d5740000000020039833?xsec_source=app_share&amp;xsec_token=CBz3xk_XczWNayW9a9ztEm5_xvxF-Nz7bOUBgzfoVrNrw=" target="_blank" rel="noopener noreferrer">年宝玉则越野穿越攻略</a>属于约4–6小时的非铺装线路，发布者明确表示普通小车不适合；不纳入D5–D6租车主线。</li>
               <li>租车时书面确认跨省、西宁异地还车、救援范围和车损条款；备选线出发前再次确认油量、胎压、备胎和离线地图。</li>
               <li>如出现静息呼吸困难、走路不稳或意识异常，应视为高原急症警讯，立即停止上升、寻求医疗并在安全条件下下撤。参考 <a href="https://www.cdc.gov/yellow-book/hcp/environmental-hazards-risks/high-altitude-travel-and-altitude-illness.html" target="_blank" rel="noopener noreferrer">CDC高海拔出行指南</a>。</li>
             </ul>
@@ -236,6 +237,15 @@
     stroke-linejoin: round;
   }
   #roadbook-map-2026-v2 .rb-province-label { fill: var(--muted-foreground); }
+  #roadbook-map-2026-v2 .rb-region-label {
+    fill: var(--viz-series-2);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    paint-order: stroke;
+    stroke: var(--background);
+    stroke-width: 4px;
+    stroke-linejoin: round;
+  }
   #roadbook-map-2026-v2 .rb-route-halo {
     fill: none;
     stroke: var(--background);
@@ -473,6 +483,20 @@
       .attr("y", d => projection(d.coord)[1])
       .attr("text-anchor", "middle")
       .text(d => d.name);
+
+    const regionLabels = [
+      { name: "果洛州", coord: [99.15, 33.20] }
+    ];
+    base.selectAll("text.rb-region-label")
+      .data(regionLabels)
+      .join("text")
+      .attr("class", "rb-region-label text-small")
+      .attr("x", d => projection(d.coord)[0])
+      .attr("y", d => projection(d.coord)[1])
+      .attr("text-anchor", "middle")
+      .text(d => d.name)
+      .append("title")
+      .text("果洛藏族自治州 · D5–D10主线路段");
 
     const routes = svg.append("g").attr("class", "rb-layer");
     days.forEach((day, index) => {
