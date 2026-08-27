@@ -25,7 +25,7 @@
   <div class="rb-map-wrap">
     <svg role="img" aria-labelledby="rb-map-title rb-map-desc">
       <title id="rb-map-title">兰州至西宁十一日自驾路线地图</title>
-      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图明确标出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线，莲宝叶则经年保玉则至久治以红色点划线标为风险参考线。</desc>
+      <desc id="rb-map-desc">主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图以橙色虚线行政边界框出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线，莲宝叶则经年保玉则至久治以红色点划线标为风险参考线。</desc>
     </svg>
     <div class="rb-loading text-small text-muted" aria-live="polite">正在绘制地图…</div>
   </div>
@@ -34,6 +34,7 @@
     <span><span class="rb-key-dot"></span>住宿 / 当日终点</span>
     <span><span class="rb-key-diamond">◆</span>主要景点</span>
     <span><span class="rb-key-square"></span>途经节点</span>
+    <span><span class="rb-key-region"></span>果洛州边界</span>
     <span><span class="rb-key-alt"></span>备选支线</span>
     <span><span class="rb-key-reference"></span>风险参考线（不执行）</span>
     <span class="text-muted">景点级示意，实际道路以导航和临时管制为准 · 底图 cn-atlas · 坐标 OSM/Nominatim</span>
@@ -179,6 +180,14 @@
   }
   #roadbook-map-2026-v2 .rb-key-dot { border-radius: 50%; }
   #roadbook-map-2026-v2 .rb-key-diamond { color: var(--viz-series-3); margin-inline-end: 0.25rem; }
+  #roadbook-map-2026-v2 .rb-key-region {
+    display: inline-block;
+    width: 1.35rem;
+    height: 0.72rem;
+    margin-inline-end: 0.3rem;
+    border: 2px dashed var(--viz-series-2);
+    vertical-align: middle;
+  }
   #roadbook-map-2026-v2 .rb-key-alt {
     display: inline-block;
     width: 1.35rem;
@@ -239,6 +248,16 @@
     stroke: var(--border);
     stroke-width: 0.7;
     opacity: 0.6;
+    vector-effect: non-scaling-stroke;
+  }
+  #roadbook-map-2026-v2 .rb-guoluo-boundary {
+    fill: var(--viz-series-2);
+    fill-opacity: 0.08;
+    stroke: var(--viz-series-2);
+    stroke-width: 2.4;
+    stroke-dasharray: 8 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
   }
   #roadbook-map-2026-v2 .rb-province-label,
@@ -458,6 +477,12 @@
     type: "FeatureCollection",
     features: prefectures.features.filter(f => regionCodes.has(String(f.properties.id).slice(0, 2)))
   };
+  const guoluoPrefecture = regionPrefectures.features.find(feature => {
+    const properties = feature.properties || {};
+    const code = String(properties.id || properties.adcode || "");
+    const name = String(properties.name || properties.fullname || "");
+    return code.startsWith("6326") || name.includes("果洛");
+  });
   const routeFrame = {
     type: "Feature",
     geometry: { type: "Polygon", coordinates: [[[97.75, 32.35], [97.75, 36.95], [104.15, 36.95], [104.15, 32.35], [97.75, 32.35]]] }
@@ -505,6 +530,14 @@
       .join("path")
       .attr("class", "rb-prefecture")
       .attr("d", geoPath);
+    if (guoluoPrefecture) {
+      base.append("path")
+        .datum(guoluoPrefecture)
+        .attr("class", "rb-guoluo-boundary")
+        .attr("d", geoPath)
+        .append("title")
+        .text("果洛藏族自治州行政边界");
+    }
 
     const provinceLabels = [
       { name: "甘肃", coord: [103.55, 35.80] },

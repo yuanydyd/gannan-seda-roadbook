@@ -915,7 +915,7 @@ html&gt;body{padding:0}&lt;/style&gt;
   &lt;div class=&quot;rb-map-wrap&quot;&gt;
     &lt;svg role=&quot;img&quot; aria-labelledby=&quot;rb-map-title rb-map-desc&quot;&gt;
       &lt;title id=&quot;rb-map-title&quot;&gt;兰州至西宁十一日自驾路线地图&lt;/title&gt;
-      &lt;desc id=&quot;rb-map-desc&quot;&gt;主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图明确标出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线，莲宝叶则经年保玉则至久治以红色点划线标为风险参考线。&lt;/desc&gt;
+      &lt;desc id=&quot;rb-map-desc&quot;&gt;主路线从兰州中川机场出发，经过甘加、夏河、洛克之路、扎尕那、唐克、阿坝和莲宝叶则，进入地图以橙色虚线行政边界框出的果洛藏族自治州，串联久治、班玛、达日、甘德和玛沁，再经贵德、坎布拉到达西宁；玛多和阿尼玛卿以虚线标为备选支线，莲宝叶则经年保玉则至久治以红色点划线标为风险参考线。&lt;/desc&gt;
     &lt;/svg&gt;
     &lt;div class=&quot;rb-loading text-small text-muted&quot; aria-live=&quot;polite&quot;&gt;正在绘制地图…&lt;/div&gt;
   &lt;/div&gt;
@@ -924,6 +924,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     &lt;span&gt;&lt;span class=&quot;rb-key-dot&quot;&gt;&lt;/span&gt;住宿 / 当日终点&lt;/span&gt;
     &lt;span&gt;&lt;span class=&quot;rb-key-diamond&quot;&gt;◆&lt;/span&gt;主要景点&lt;/span&gt;
     &lt;span&gt;&lt;span class=&quot;rb-key-square&quot;&gt;&lt;/span&gt;途经节点&lt;/span&gt;
+    &lt;span&gt;&lt;span class=&quot;rb-key-region&quot;&gt;&lt;/span&gt;果洛州边界&lt;/span&gt;
     &lt;span&gt;&lt;span class=&quot;rb-key-alt&quot;&gt;&lt;/span&gt;备选支线&lt;/span&gt;
     &lt;span&gt;&lt;span class=&quot;rb-key-reference&quot;&gt;&lt;/span&gt;风险参考线（不执行）&lt;/span&gt;
     &lt;span class=&quot;text-muted&quot;&gt;景点级示意，实际道路以导航和临时管制为准 · 底图 cn-atlas · 坐标 OSM/Nominatim&lt;/span&gt;
@@ -1069,6 +1070,14 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   #roadbook-map-2026-v2 .rb-key-dot { border-radius: 50%; }
   #roadbook-map-2026-v2 .rb-key-diamond { color: var(--viz-series-3); margin-inline-end: 0.25rem; }
+  #roadbook-map-2026-v2 .rb-key-region {
+    display: inline-block;
+    width: 1.35rem;
+    height: 0.72rem;
+    margin-inline-end: 0.3rem;
+    border: 2px dashed var(--viz-series-2);
+    vertical-align: middle;
+  }
   #roadbook-map-2026-v2 .rb-key-alt {
     display: inline-block;
     width: 1.35rem;
@@ -1129,6 +1138,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     stroke: var(--border);
     stroke-width: 0.7;
     opacity: 0.6;
+    vector-effect: non-scaling-stroke;
+  }
+  #roadbook-map-2026-v2 .rb-guoluo-boundary {
+    fill: var(--viz-series-2);
+    fill-opacity: 0.08;
+    stroke: var(--viz-series-2);
+    stroke-width: 2.4;
+    stroke-dasharray: 8 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
     vector-effect: non-scaling-stroke;
   }
   #roadbook-map-2026-v2 .rb-province-label,
@@ -1348,6 +1367,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     type: &quot;FeatureCollection&quot;,
     features: prefectures.features.filter(f =&gt; regionCodes.has(String(f.properties.id).slice(0, 2)))
   };
+  const guoluoPrefecture = regionPrefectures.features.find(feature =&gt; {
+    const properties = feature.properties || {};
+    const code = String(properties.id || properties.adcode || &quot;&quot;);
+    const name = String(properties.name || properties.fullname || &quot;&quot;);
+    return code.startsWith(&quot;6326&quot;) || name.includes(&quot;果洛&quot;);
+  });
   const routeFrame = {
     type: &quot;Feature&quot;,
     geometry: { type: &quot;Polygon&quot;, coordinates: [[[97.75, 32.35], [97.75, 36.95], [104.15, 36.95], [104.15, 32.35], [97.75, 32.35]]] }
@@ -1395,6 +1420,14 @@ html&gt;body{padding:0}&lt;/style&gt;
       .join(&quot;path&quot;)
       .attr(&quot;class&quot;, &quot;rb-prefecture&quot;)
       .attr(&quot;d&quot;, geoPath);
+    if (guoluoPrefecture) {
+      base.append(&quot;path&quot;)
+        .datum(guoluoPrefecture)
+        .attr(&quot;class&quot;, &quot;rb-guoluo-boundary&quot;)
+        .attr(&quot;d&quot;, geoPath)
+        .append(&quot;title&quot;)
+        .text(&quot;果洛藏族自治州行政边界&quot;);
+    }
 
     const provinceLabels = [
       { name: &quot;甘肃&quot;, coord: [103.55, 35.80] },
